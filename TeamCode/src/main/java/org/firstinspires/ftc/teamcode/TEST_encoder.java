@@ -24,7 +24,7 @@ public class TEST_encoder extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        robot.resetEncoder(5);
+        robot.resetEncoder(0);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //

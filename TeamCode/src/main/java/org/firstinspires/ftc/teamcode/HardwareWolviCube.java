@@ -110,19 +110,29 @@ public class HardwareWolviCube
     }
 
     public void resetEncoder(int n){
-        if (n == 1 || n == 5) {
+        if (n == 0) {
+            frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        }
+        else if (n == 1) {
             frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
-        else if (n == 2 || n == 5) {
+        else if (n == 2) {
             frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
-        else if (n == 3 || n == 5) {
+        else if (n == 3) {
             backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
-        else if (n == 4 || n == 5) {
+        else if (n == 4) {
             backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
