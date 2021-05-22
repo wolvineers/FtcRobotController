@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.RobotUtilities;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -51,7 +51,7 @@ import java.util.Set;
  * Motor channel:  Back Right   drive motor:    "backRight"
  */
 
-public class HardwareWolviCube
+public class WolviCube
 {
     /* Public OpMode members. */
 

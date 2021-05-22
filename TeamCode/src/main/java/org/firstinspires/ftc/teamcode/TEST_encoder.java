@@ -2,9 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-//import org.firstinspires.ftc.teamcode.HardwareWolviCube;
+//import org.firstinspires.ftc.teamcode.RobotUtilities.HardwareWolviCube;
 
 @TeleOp(name="Test Encoder", group="Test")
 public class TEST_encoder extends LinearOpMode {

@@ -18,8 +18,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  */
 
-@TeleOp(name="Test Mecanum - Gamepad", group="Test")
-public class TEST_WolviCube_Teleop extends LinearOpMode {
+@TeleOp(name="Wolvicube Teleop", group="Competition")
+public class WolviCube_Teleop extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareWolviCube robot         = new HardwareWolviCube();   // Use a Pushbot's hardware
@@ -59,13 +59,6 @@ public class TEST_WolviCube_Teleop extends LinearOpMode {
             backLeftPower = y - x + rx;
             backRightPower = y + x - rx;
 
-            // Normalize the values so neither exceed +/- 1.0. Code from sample
-            /*max = Math.max(Math.abs(left), Math.abs(right));
-            if (max > 1.0)
-            {
-                left /= max;
-                right /= max;
-            }*/
             telemetry.addData("FLP", frontLeftPower);    //
             telemetry.addData("FRP", frontRightPower);    //
             telemetry.addData("BLP", backLeftPower);    //

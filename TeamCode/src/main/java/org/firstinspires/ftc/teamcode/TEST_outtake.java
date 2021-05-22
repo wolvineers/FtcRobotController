@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-//import org.firstinspires.ftc.teamcode.HardwareWolviCube;
+//import org.firstinspires.ftc.teamcode.RobotUtilities.HardwareWolviCube;
 
 @TeleOp(name="Test Outtake", group="Test")
 public class TEST_outtake extends LinearOpMode {
