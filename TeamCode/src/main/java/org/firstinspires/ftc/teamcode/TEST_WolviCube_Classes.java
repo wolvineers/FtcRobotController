@@ -2,15 +2,18 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Hardware.Drivetrain;
 import org.firstinspires.ftc.teamcode.Hardware.Lift;
 import org.firstinspires.ftc.teamcode.Utilities.WolviCube;
 
-@TeleOp(name="Test Encoder", group="Test")
+@TeleOp(name="Test Lift", group="Test")
 public class TEST_WolviCube_Classes extends LinearOpMode {
 
     WolviCube robot = new WolviCube();
@@ -26,7 +29,9 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
         robot.setDrivetrain(dt);*/
 
         // Lift
-        Lift lift = new Lift(hwMap.get(DcMotor.class, "lift"));
+        Lift lift = new Lift(hwMap.get(DcMotor.class, "lift"),
+                hwMap.get(AnalogInput.class, "liftTouchUp"),
+                hwMap.get(AnalogInput.class, "liftTouchDown"));
         robot.setLift(lift);
     }
 
@@ -43,7 +48,7 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
 
         telemetry.addData("INITIALIZATING LIFT WITH UP OR DOWN...", "END WITH A");
         telemetry.update();
-        robot.lift.init(gamepad1);
+        robot.lift.init(gamepad1, telemetry);
 
         DcMotor m1 = hardwareMap.get(DcMotor .class,"outtake_l");
         m1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -55,17 +60,17 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
         m2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         m2.setDirection(DcMotor.Direction.FORWARD);
 
-        telemetry.addData("LET'S CONTROL...", "YES WE CAAAAN");
-        telemetry.update();
+        //telemetry.addData("LET'S CONTROL...", "YES WE CAAAAN");
+        //telemetry.update();
 
         m1.setPower(-1);
         m2.setPower(1);
 
         while (opModeIsActive()) {
             if (gamepad1.dpad_up) {
-                robot.lift.up(telemetry);
+                robot.lift.up();
             } else if (gamepad1.dpad_down) {
-                robot.lift.down(telemetry);
+                robot.lift.down();
             }
         }
     }
