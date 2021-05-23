@@ -12,6 +12,12 @@ public class Lift {
     public AnalogInput limitSwitch_up       = null;
     public AnalogInput limitSwitch_down     = null;
 
+    //////////////////// CONSTANTS ////////////////////
+
+    private final double DISTANCE_TO_LIFT = -950;    // Motor steps from encoder
+
+
+
     public Lift(DcMotor m, AnalogInput up, AnalogInput down) {
         motor               = m;
         limitSwitch_up      = up;
@@ -36,6 +42,20 @@ public class Lift {
 
         while (limitSwitch_down.getVoltage()>1) { } // Our limit switch is normally closed
 
+        motor.setPower(0);
+    }
+
+    public void upToDistance() {
+        motor.setPower(-1);
+
+        while (motor.getCurrentPosition() > DISTANCE_TO_LIFT) { }
+        motor.setPower(0);
+    }
+
+    public void downToDistance() {
+        motor.setPower(-1);
+
+        while (motor.getCurrentPosition() < 0) { }
         motor.setPower(0);
     }
 
@@ -64,6 +84,4 @@ public class Lift {
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-
-
 }

@@ -24,7 +24,7 @@ public class Teleop extends LinearOpMode {
         while (opModeIsActive()) {
             if (gamepad1.b) {
                 telemetry.addData("Shooting... ", String.valueOf(shoots), " try");
-                robot.outtake.shoot();
+                robot.outtake.shoot(); shoots++;
             }
             if (gamepad2.dpad_up) {
                 telemetry.addData("Lifting...", "up");
@@ -34,6 +34,10 @@ public class Teleop extends LinearOpMode {
                 telemetry.addData("Lifting...", "down");
                 robot.lift.down();
             }
+
+            robot.dt.applyMovement(-gamepad1.left_stick_y, -gamepad1.left_stick_x, gamepad1.right_stick_x);
+
+            telemetry.update();
         }
 
     }
