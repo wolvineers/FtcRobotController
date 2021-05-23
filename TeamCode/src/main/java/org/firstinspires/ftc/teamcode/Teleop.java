@@ -28,10 +28,12 @@ public class Teleop extends LinearOpMode {
             }
             if (gamepad2.dpad_up) {
                 telemetry.addData("Lifting...", "up");
+                robot.outtake.activated();
                 robot.lift.up();
             }
             if (gamepad2.dpad_down){
                 telemetry.addData("Lifting...", "down");
+                robot.outtake.deactivated();
                 robot.lift.down();
             }
 
