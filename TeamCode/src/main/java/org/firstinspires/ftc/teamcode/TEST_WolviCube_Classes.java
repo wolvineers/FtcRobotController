@@ -48,7 +48,7 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
 
         telemetry.addData("INITIALIZATING LIFT WITH UP OR DOWN...", "END WITH A");
         telemetry.update();
-        robot.lift.init(gamepad1, telemetry);
+        robot.lift.init(gamepad1);
 
         DcMotor m1 = hardwareMap.get(DcMotor .class,"outtake_l");
         m1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

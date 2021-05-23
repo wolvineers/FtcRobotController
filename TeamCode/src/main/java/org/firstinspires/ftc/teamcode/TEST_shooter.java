@@ -7,14 +7,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.teamcode.Hardware.Drivetrain;
 import org.firstinspires.ftc.teamcode.Hardware.Lift;
+import org.firstinspires.ftc.teamcode.Hardware.Outtake;
 import org.firstinspires.ftc.teamcode.Utilities.WolviCube;
 
-@TeleOp(name="Test Lift", group="Test")
-public class TEST_WolviCube_Classes extends LinearOpMode {
+@TeleOp(name="Test shooter", group="Test")
+public class TEST_shooter extends LinearOpMode {
 
     WolviCube robot = new WolviCube();
 
@@ -29,10 +31,16 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
         robot.setDrivetrain(dt);*/
 
         // Lift
-        Lift lift = new Lift(hwMap.get(DcMotor.class, "lift"),
+        /*Lift lift = new Lift(hwMap.get(DcMotor.class, "lift"),
                 hwMap.get(AnalogInput.class, "liftTouchUp"),
                 hwMap.get(AnalogInput.class, "liftTouchDown"));
-        robot.setLift(lift);
+        robot.setLift(lift);*/
+
+        // Outtake
+        Outtake outtake = new Outtake(hwMap.get(DcMotor.class, "outtake_l"),
+                hwMap.get(DcMotor.class, "outtake_r"),
+                hwMap.get(Servo.class, "shooter"));
+        robot.setOuttake(outtake);
     }
 
     @Override
@@ -47,10 +55,8 @@ public class TEST_WolviCube_Classes extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            if (gamepad1.dpad_up) {
-                robot.lift.up();
-            } else if (gamepad1.dpad_down) {
-                robot.lift.down();
+            if (gamepad1.x) {
+                robot.outtake.shoot();
             }
         }
     }

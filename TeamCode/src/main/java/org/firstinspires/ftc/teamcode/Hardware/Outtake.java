@@ -9,9 +9,10 @@ public class Outtake {
 
     public Servo shooter = null;
 
-    public Outtake(DcMotor l, DcMotor r, ) {
-        left = l;
-        right = r;
+    public Outtake(DcMotor l, DcMotor r, Servo s) {
+        left    = l;
+        right   = r;
+        shooter = s;
 
         // Set motor config
         left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -28,12 +29,12 @@ public class Outtake {
         right.setPower(1);
     }
 
-    public void desactivated() {
+    public void deactivated() {
         left.setPower(0);
         right.setPower(0);
     }
 
-    public void shooter(){
+    public void shoot(){
         shooter.setPosition(0);
         shooter.setPosition(1);
     }
@@ -42,6 +43,5 @@ public class Outtake {
         left.setPower(0);
         right.setPower(0);
         shooter.setPosition(1);
-
     }
 }
