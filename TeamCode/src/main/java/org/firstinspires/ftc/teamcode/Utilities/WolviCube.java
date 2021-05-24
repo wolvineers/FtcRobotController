@@ -10,9 +10,10 @@ import org.firstinspires.ftc.teamcode.Hardware.Lift;
 import org.firstinspires.ftc.teamcode.Hardware.Outtake;
 
 public class WolviCube {
-    public Lift lift;
-    public Drivetrain dt;
-    public Outtake outtake;
+    public Lift lift        = null;
+    public Drivetrain dt    = null;
+    public Outtake outtake  = null;
+    public Gyro gyro        = null;
 
     /* Constructor */
     public WolviCube(){
@@ -47,5 +48,7 @@ public class WolviCube {
 
     public void setOuttake(Outtake newOuttake) { outtake = newOuttake; }
 
- }
+    public void setGyro(Gyro newGyro) { gyro = newGyro; }
+
+}
 

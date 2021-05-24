@@ -1,47 +1,39 @@
-package org.firstinspires.ftc.teamcode.Hardware;
+package org.firstinspires.ftc.teamcode.Utilities;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+import static android.os.SystemClock.sleep;
+
 
 public class Gyro {
 
     //////////////////// ATRIBUTES ////////////////////
-    BNO055IMU               imu;
-    Orientation             angles, lastAngles = new Orientation();
-    double                  globalAngle, deltaAngle
-
-    // Structure for IMU parameters
-    BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-    parameters.mode                 = BNO055IMU.SensorMode.IMU;
-    parameters.angleUnit            = BNO055IMU.AngleUnit.DEGREES;
-    parameters.accelUnit            = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-    parameters.loggingEnabled       = false;
-
+    public BNO055IMU               imu;
+    public Orientation             angles, lastAngles = new Orientation();
+    public double                  globalAngle, deltaAngle;
 
     public Gyro(BNO055IMU newImu) {
         imu = newImu;
-
-        imu.initialize(parameters);
-
-        // In the initialization gyro is calibrated
-        while (!imu.isGyroCalibrated()) {
-            sleep(50);
-            idle();
-        }
     }
 
     public void init() {
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+
+        parameters.mode                 = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit            = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit            = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled       = false;
+
         imu.initialize(parameters);
 
-        // In the initialization gyro is calibrated
-        while (!imu.isGyroCalibrated()) {
-            sleep(50);
-            idle();
+        while(!imu.isGyroCalibrated()) {
+            sleep(200);
         }
     }
 
@@ -66,5 +58,4 @@ public class Gyro {
 
         return globalAngle;
     }
-
 }
