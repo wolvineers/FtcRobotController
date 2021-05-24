@@ -15,8 +15,9 @@ public class Drivetrain {
     public DcMotor  backRight   = null;
 
     // Correction factor values
-    public double strafingCorrection = 1.1;
-    public double turnCorrection = 1;
+    public double strafingCorrection    = 1.1;
+    public double turnCorrection        = 1;
+    public double powerMotor            = 1.00; // 100%
 
     public Drivetrain (DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR) {
 
@@ -41,6 +42,17 @@ public class Drivetrain {
         frontRight.setPower(0);
         backLeft.setPower(0);
         backRight.setPower(0);
+    }
+
+    // Increment [-1, 1]
+    public double incrementPower(double increment) {
+        power += increment;
+
+        // Normalize power between -1 and 1
+        if (power > 1) power == 1;
+        else if (power < -1) power == -1;
+
+        return power;
     }
 
     public void applyMovement(double left_x, double left_y, double right_x) {
@@ -99,5 +111,56 @@ public class Drivetrain {
         this.frontRight.setPower(frontRightPower);
         this.backLeft.setPower(backLeftPower);
         this.backRight.setPower(backRightPower);
+    }
+
+    public void rotate(int degrees) {
+        double frontLeftPower,  frontRightPower, backLeftPower, backRightPower;
+
+        // Restart imu to rotate
+        robot.gyro.resetAngle();
+
+        if (degrees < 0)
+        {   // turn right.
+            frontLeftPower = -powerMotor;
+            frontRightPower = powerMotor;
+            backLeftPower = -powerMotor;
+            backRightPower = powerMotor;
+        }
+        else if (degrees > 0)
+        {   // turn left.
+            frontLeftPower = powerMotor;
+            frontRightPower = -powerMotor;
+            backLeftPower = powerMotor;
+            backRightPower = -powerMotor;
+        }
+        else return;
+
+        // Set power to rotate
+        frontLeft.setPower(frontLeftPower);
+        frontRight.setPower(frontRightPower);
+        backLeft.setPower(backLeftPower);
+        backRight.setPower(backRightPower);
+
+        // Rotate until turn is completed
+        if (degrees < 0) {
+            // On right turn we have to get off zero first.
+            while (getAngle() == 0) {}
+            while (getAngle() > degrees) {}
+        }
+        else {    // left turn.
+            while (getAngle() < degrees) {}
+        }
+
+        // turn the motors off.
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+
+        // wait for rotation to stop.
+        sleep(500);
+
+        // reset angle on new heading.
+        robot.gyro.resetAngle();
     }
 }
