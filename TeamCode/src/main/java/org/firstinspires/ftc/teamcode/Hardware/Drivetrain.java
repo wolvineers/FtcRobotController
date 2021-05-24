@@ -80,4 +80,24 @@ public class Drivetrain {
         this.backLeft.setPower(backLeftPower);
         this.backRight.setPower(backRightPower);
     }
+
+    public void applyMovementOnX(double left_x) {
+        // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
+        // In this mode the Left stick moves the robot, the Right stick turns left and right.
+        double y = 0;
+        double x = -left_x * strafingCorrection;
+        double rx = 0;
+
+        // Combine drive and turn for blended motion.
+        double frontLeftPower = y + x + rx;
+        double frontRightPower = y - x - rx;
+        double backLeftPower = y - x + rx;
+        double backRightPower = y + x - rx;
+
+        // Output the safe vales to the motor drives. [-1, 1]
+        this.frontLeft.setPower(frontLeftPower);
+        this.frontRight.setPower(frontRightPower);
+        this.backLeft.setPower(backLeftPower);
+        this.backRight.setPower(backRightPower);
+    }
 }

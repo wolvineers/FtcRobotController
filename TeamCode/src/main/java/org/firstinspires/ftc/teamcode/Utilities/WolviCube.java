@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Hardware.Drivetrain;
+import org.firstinspires.ftc.teamcode.Hardware.Intake;
 import org.firstinspires.ftc.teamcode.Hardware.Lift;
 import org.firstinspires.ftc.teamcode.Hardware.Outtake;
 
@@ -13,6 +14,7 @@ public class WolviCube {
     public Lift lift        = null;
     public Drivetrain dt    = null;
     public Outtake outtake  = null;
+    public Intake intake    = null;
     public Gyro gyro        = null;
 
     /* Constructor */
@@ -47,6 +49,8 @@ public class WolviCube {
     public void setLift(Lift newLift) { lift = newLift; }
 
     public void setOuttake(Outtake newOuttake) { outtake = newOuttake; }
+
+    public void setIntake(Intake newIntake) { intake = newIntake; }
 
     public void setGyro(Gyro newGyro) { gyro = newGyro; }
 
