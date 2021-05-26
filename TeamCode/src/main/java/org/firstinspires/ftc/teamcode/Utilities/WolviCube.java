@@ -9,13 +9,15 @@ import org.firstinspires.ftc.teamcode.Hardware.Drivetrain;
 import org.firstinspires.ftc.teamcode.Hardware.Intake;
 import org.firstinspires.ftc.teamcode.Hardware.Lift;
 import org.firstinspires.ftc.teamcode.Hardware.Outtake;
+import org.firstinspires.ftc.teamcode.Hardware.WobbleGoalArm;
 
 public class WolviCube {
-    public Lift lift        = null;
-    public Drivetrain dt    = null;
-    public Outtake outtake  = null;
-    public Intake intake    = null;
-    public Gyro gyro        = null;
+    public Lift lift                        = null;
+    public Drivetrain dt                    = null;
+    public Outtake outtake                  = null;
+    public Intake intake                    = null;
+    public WobbleGoalArm wobbleGoalArm      = null;
+    public Gyro gyro                        = null;
 
     /* Constructor */
     public WolviCube(){
@@ -40,6 +42,11 @@ public class WolviCube {
                 hwMap.get(DcMotor.class, "outtake_r"),
                 hwMap.get(Servo.class, "shooter"));
         this.setOuttake(outtake);
+
+        // Wobble Goal Arm
+        WobbleGoalArm wobbleGoalArm = new WobbleGoalArm(hwMap.get(Servo.class, "arm"),
+                hwMap.get(Servo.class, "clamp"));
+        this.setWobbleGoalArm(wobbleGoalArm);
     }
 
     public void setDrivetrain(Drivetrain newDt){
@@ -51,6 +58,8 @@ public class WolviCube {
     public void setOuttake(Outtake newOuttake) { outtake = newOuttake; }
 
     public void setIntake(Intake newIntake) { intake = newIntake; }
+
+    public void setWobbleGoalArm(WobbleGoalArm newWobbleGoalArm) { wobbleGoalArm = newWobbleGoalArm; }
 
     public void setGyro(Gyro newGyro) { gyro = newGyro; }
 
