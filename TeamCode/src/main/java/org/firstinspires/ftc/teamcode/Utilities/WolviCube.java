@@ -54,9 +54,9 @@ public class WolviCube {
         this.setIntake(intake);
 
         // Wobble Goal Arm
-        WobbleGoalArm wobbleGoalArm = new WobbleGoalArm(hwMap.get(Servo.class, "arm"),
+        /*WobbleGoalArm wobbleGoalArm = new WobbleGoalArm(hwMap.get(Servo.class, "arm"),
                 hwMap.get(Servo.class, "clamp"));
-        this.setWobbleGoalArm(wobbleGoalArm);
+        this.setWobbleGoalArm(wobbleGoalArm);*/
     }
 
     public void setDrivetrain(Drivetrain newDt){

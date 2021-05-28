@@ -11,7 +11,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 
-@Autonomous(name="Auto", group="Definitius")
+@Autonomous(name="Auto2", group="Tests")
 public class Auto extends LinearOpMode {
 
     WolviCube robot = new WolviCube();
@@ -52,7 +52,7 @@ public class Auto extends LinearOpMode {
 
         while (opModeIsActive())
         {
-            telemetry.addData("Analysis", pipeline.getResult());
+            telemetry.addData("Position", pipeline.getPosition());
             telemetry.update();
 
             // Don't burn CPU cycles busy-looping in this sample

@@ -67,22 +67,22 @@ public class Teleop extends LinearOpMode {
 
             if (gamepad2.y) {
                 telemetry.addData("Wobble Goal arm...", "raise");
-                robot.wobbleGoalArm.raiseArm();
+                //robot.wobbleGoalArm.raiseArm();
             }
 
             if (gamepad2.b) {
                 telemetry.addData("Wobble Goal clamp...", "close");
-                robot.wobbleGoalArm.closeClamp();
+                //robot.wobbleGoalArm.closeClamp();
             }
 
             if (gamepad2.a) {
                 telemetry.addData("Wobble Goal arm...", "lower");
-                robot.wobbleGoalArm.lowerArm();
+                //robot.wobbleGoalArm.lowerArm();
             }
 
             if (gamepad2.x) {
                 telemetry.addData("Wobble Goal clamp...", "open");
-                robot.wobbleGoalArm.openClamp();
+                //robot.wobbleGoalArm.openClamp();
             }
 
             if (movementBlocked) robot.dt.applyMovementOnX(-gamepad1.left_stick_x);
