@@ -32,6 +32,7 @@ public class Lift {
     public void up() {
         motor.setPower(-1);
 
+        //while (limitSwitch_up.getVoltage()>1 || motor.getCurrentPosition() > DISTANCE_TO_LIFT) { } // Our limit switch is normally closed
         while (limitSwitch_up.getVoltage()>1) { } // Our limit switch is normally closed
 
         motor.setPower(0);
@@ -40,6 +41,7 @@ public class Lift {
     public void down() {
         motor.setPower(1);
 
+        //while (limitSwitch_down.getVoltage()>1 || motor.getCurrentPosition() < 0) { } // Our limit switch is normally closed
         while (limitSwitch_down.getVoltage()>1) { } // Our limit switch is normally closed
 
         motor.setPower(0);

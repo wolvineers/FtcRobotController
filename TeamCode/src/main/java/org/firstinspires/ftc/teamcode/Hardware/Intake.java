@@ -14,11 +14,11 @@ public class Intake {
         motor.setDirection(DcMotor.Direction.FORWARD);
     }
 
-    public void actived() {
-        motor.setPower(1);
+    public void activated() {
+        motor.setPower(-1);
     }
 
-    public void desactivated() {
+    public void deactivated() {
         motor.setPower(0);
     }
 

@@ -22,12 +22,18 @@ public class WolviCube {
     }
 
     public void addModulesToRobot2021(HardwareMap hwMap) {
+
+        // Gyro
+        //Gyro gyro = new Gyro()
+
         // Drivetrain
         Drivetrain dt = new Drivetrain(hwMap.get(DcMotor.class, "frontLeft"),
                 hwMap.get(DcMotor .class,"frontRight"),
                 hwMap.get(DcMotor .class,"backLeft"),
                 hwMap.get(DcMotor .class,"backRight"));
         this.setDrivetrain(dt);
+
+        //this.dt.setGyro(gyro);
 
         // Lift
         Lift lift = new Lift(hwMap.get(DcMotor.class, "lift"),
@@ -40,6 +46,10 @@ public class WolviCube {
                 hwMap.get(DcMotor.class, "outtake_r"),
                 hwMap.get(Servo.class, "shooter"));
         this.setOuttake(outtake);
+
+        // Outtake
+        Intake intake = new Intake(hwMap.get(DcMotor.class, "intake"));
+        this.setIntake(intake);
     }
 
     public void setDrivetrain(Drivetrain newDt){

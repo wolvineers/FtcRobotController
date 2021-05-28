@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import static android.os.SystemClock.sleep;
+
 public class Outtake {
     public DcMotor left = null;
     public DcMotor right = null;
@@ -35,8 +37,9 @@ public class Outtake {
     }
 
     public void shoot(){
-        shooter.setPosition(0);
         shooter.setPosition(1);
+        sleep(750);
+        shooter.setPosition(0.35);
     }
 
     public void init(){

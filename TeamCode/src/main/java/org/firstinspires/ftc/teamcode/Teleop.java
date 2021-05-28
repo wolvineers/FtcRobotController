@@ -25,8 +25,7 @@ public class Teleop extends LinearOpMode {
 
         while (opModeIsActive()) {
             // INITIALIZATION
-            movementUnblocked = false;
-            movementBlocked = true;
+            movementBlocked = false;
 
             // GAMEPAD 1 - buttons distribution
 
@@ -36,18 +35,10 @@ public class Teleop extends LinearOpMode {
             }
 
             if (gamepad1.a) {
-                if (!movementUnblocked && movementBlocked) {
-                    telemetry.addData("Movement...", "on all directions");
-                    robot.dt.applyMovement(-gamepad1.left_stick_y, -gamepad1.left_stick_x, gamepad1.right_stick_x); // No sé quin paràmetre s'ha de posar
-                    movementUnblocked = true;
-                    movementBlocked = false;
-                }
-                else if (movementUnblocked && !movementBlocked) {
-                    telemetry.addData("Movement...", "only on X axis");
-                    robot.dt.applyMovementOnX(-gamepad1.left_stick_x); // No sé quin paràmetre s'ha de posar
-                    movementUnblocked = false;
-                    movementBlocked = true;
-                }
+                movementBlocked = !movementBlocked;
+                if (movementBlocked) telemetry.addData("Movement...", "on all directions");
+                else telemetry.addData("Movement...", "on X axe");
+                sleep(500);
             }
 
             if (gamepad1.left_bumper) {
@@ -64,12 +55,14 @@ public class Teleop extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 telemetry.addData("Lifting...", "up");
                 robot.outtake.activated();
+                robot.intake.deactivated();
                 robot.lift.up();
             }
 
             if (gamepad2.dpad_down) {
                 telemetry.addData("Lifting...", "down");
                 robot.outtake.deactivated();
+                robot.intake.activated();
                 robot.lift.down();
             }
 
@@ -88,6 +81,9 @@ public class Teleop extends LinearOpMode {
             if (gamepad2.x) {
                 // Obrir pinça
             }
+
+            if (movementBlocked) robot.dt.applyMovementOnX(-gamepad1.left_stick_x);
+            else robot.dt.applyMovement(-gamepad1.left_stick_y, -gamepad1.left_stick_x, gamepad1.right_stick_x);
 
             telemetry.update();
         }

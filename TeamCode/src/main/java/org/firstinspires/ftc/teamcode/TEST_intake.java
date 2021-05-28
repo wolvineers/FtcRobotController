@@ -43,7 +43,7 @@ public class TEST_intake extends LinearOpMode {
 
         while (opModeIsActive()) {
             if (gamepad1.dpad_up) {
-                robot.intake.actived();
+                robot.intake.activated();
             }
         }
     }

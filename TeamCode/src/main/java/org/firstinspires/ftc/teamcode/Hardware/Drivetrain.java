@@ -15,12 +15,18 @@ public class Drivetrain {
     public DcMotor  backLeft    = null;
     public DcMotor  backRight   = null;
 
+    public Gyro gyro = null;
+
     // Correction factor values
     public double strafingCorrection    = 1.1;
     public double turnCorrection        = 1;
-    public double powerMotor            = 1.00; // 100%
+    public double powerMotor            = .50; // 100%
 
     public Drivetrain (DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR) {
+        frontLeft = fL;
+        frontRight = fR;
+        backLeft = bL;
+        backRight = bR;
 
         // Set all motors to run without encoders.
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -47,13 +53,13 @@ public class Drivetrain {
 
     // Increment [-1, 1]
     public double incrementPower(double increment) {
-        power += increment;
+        powerMotor += increment;
 
         // Normalize power between -1 and 1
-        if (power > 1) power == 1;
-        else if (power < -1) power == -1;
+        if (powerMotor > 1) powerMotor = 1;
+        else if (powerMotor < -1) powerMotor = -1;
 
-        return power;
+        return powerMotor;
     }
 
     public void applyMovement(double left_x, double left_y, double right_x) {
@@ -114,11 +120,11 @@ public class Drivetrain {
         this.backRight.setPower(backRightPower);
     }
 
-    public void rotate(int degrees) {
+    /*public void rotate(int degrees) {
         double frontLeftPower,  frontRightPower, backLeftPower, backRightPower;
 
         // Restart imu to rotate
-        robot.gyro.resetAngle();
+        gyro.resetAngle();
 
         if (degrees < 0)
         {   // turn right.
@@ -145,11 +151,11 @@ public class Drivetrain {
         // Rotate until turn is completed
         if (degrees < 0) {
             // On right turn we have to get off zero first.
-            while (getAngle() == 0) {}
-            while (getAngle() > degrees) {}
+            while (gyro.getAngle() == 0) {}
+            while (gyro.getAngle() > degrees) {}
         }
         else {    // left turn.
-            while (getAngle() < degrees) {}
+            while (gyro.getAngle() < degrees) {}
         }
 
         // turn the motors off.
@@ -159,9 +165,9 @@ public class Drivetrain {
         backRight.setPower(0);
 
         // wait for rotation to stop.
-        sleep(500);
+        //sleep(500); buscar quina classe és la bona
 
         // reset angle on new heading.
-        robot.gyro.resetAngle();
-    }
+        gyro.resetAngle();
+    }*/
 }
