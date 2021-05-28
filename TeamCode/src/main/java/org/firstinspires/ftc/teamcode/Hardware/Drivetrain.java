@@ -62,7 +62,7 @@ public class Drivetrain {
         return powerMotor;
     }
 
-    public void applyMovement(double left_x, double left_y, double right_x) {
+    public void applyMovement(double left_y, double left_x, double right_x) {
         // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
         // In this mode the Left stick moves the robot, the Right stick turns left and right.
         double y = -left_y;

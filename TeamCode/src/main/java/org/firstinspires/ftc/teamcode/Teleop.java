@@ -13,7 +13,6 @@ public class Teleop extends LinearOpMode {
 
     int shoots = 0;
     boolean movementBlocked = false;
-    boolean movementUnblocked = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
